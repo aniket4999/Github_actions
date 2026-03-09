@@ -11,4 +11,23 @@ jobs:
         run: echo "hi all"
       - name: check the os version
         run: cat /etc/os-release
+
+  job2:
+    name: job2
+    runs-on: unbuntu-latest
+    steps:
+      - name: check hostname
+        run: hostname
+      - name: date
+        run: echo "date is 'date'"
+  job3:
+    name: job3
+    needs: job1    #create dependency using needs so that job3 will run after 1
+    runs-on: ubuntu-latest
+    steps:
+       - name: echo
+         run: echo "hello job3
+       - name: sleep
+         run: sleep 10
+    
       
