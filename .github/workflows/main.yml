@@ -1,0 +1,4 @@
+name: myworkflow
+# to get trigger on every push
+on: push
+
