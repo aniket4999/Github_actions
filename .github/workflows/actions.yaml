@@ -36,6 +36,12 @@ jobs:
             path: |
              ./myartifacts.txt
              artifact
+
+      - name: upload artifacts directory with exclusion using !**
+        uses: actions/upload-artifact@v4
+        with:
+            name: mydirectory
+            path: |
+             ./myartifacts.txt
+             artifact
              !** hostname.txt # for ignoring any files, give the name
-      
-            
