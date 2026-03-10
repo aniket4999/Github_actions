@@ -40,8 +40,9 @@ jobs:
       - name: upload artifacts directory with exclusion using !**
         uses: actions/upload-artifact@v4
         with:
-            name: mydirectory
+            name: upload-${{ github.run_id }}-${{ github.job }}
             path: |
              ./myartifacts.txt
              artifact/
              !** /hostname.txt
+             
