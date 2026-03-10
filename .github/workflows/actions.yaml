@@ -43,5 +43,5 @@ jobs:
             name: mydirectory
             path: |
              ./myartifacts.txt
-             artifact
-             !** hostname.txt # for ignoring any files, give the name
+             artifact/
+             !** /hostname.txt
