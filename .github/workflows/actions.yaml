@@ -1,0 +1,21 @@
+name: workflow for actions
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  job-1:
+    name: job-1
+    runs-on: ubuntu-latest
+    steps:
+      - name: commands
+        run: |
+            pwd
+            ls -ltr
+      - name: Checkout
+        uses: actions/checkout@v6.0.0
+      - name: step-3 commands
+        run: |
+            pwd
+            ls -ltr
