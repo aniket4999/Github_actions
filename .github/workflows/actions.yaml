@@ -47,6 +47,7 @@ jobs:
              !**/hostname.txt
   job-2:
       name: job-2
+      needs: job-1
       runs-on: ubuntu-latest
       steps:
       - name: download artifacts from job1
@@ -56,4 +57,19 @@ jobs:
       - name: list the file
         run: 
               ls -ltr
-               
+
+  job-3:
+      name: job-3
+      needs: job-2
+      runs-on: ubuntu-latest
+      steps:
+      - name: create folder/dir
+        run: mkdir -p myfolder
+      - name: download artifacts from job1
+        uses: actions/download-artifact@v4
+        with:
+            name: myfiles
+            path: myfolder
+      - name: list the file
+        run: 
+              ls -ltr
