@@ -36,6 +36,6 @@ jobs:
             path: |
              ./myartifacts.txt
              artifact
-             !** hostname.txt # for ignoring any files, give the name
+            # !** hostname.txt # for ignoring any files, give the name
       
             
