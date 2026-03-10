@@ -20,6 +20,7 @@ jobs:
             echo 'pwd' >> myartifacts.txt
             mkdir artifact
             pwd
+            echo 'hostname' >> artifact/hostname.txt
             echo 'ls -ltr' >> artifact/listfiles.txt
 
       - name: upload artifacts
@@ -35,5 +36,6 @@ jobs:
             path: |
              ./myartifacts.txt
              artifact
+             !** hostname.txt # for ignoring any files, give the name
       
             
