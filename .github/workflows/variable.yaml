@@ -29,6 +29,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
             name: files
+            path: folder
       - name: list the file
         run: 
               ls -ltr
