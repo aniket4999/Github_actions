@@ -39,16 +39,5 @@ jobs:
       runs-on: ubuntu-latest
       environment: Production
       steps:
-      - name: create files/folder
-        run: |
-          mkdir -p folder
-          echo "hello aniket" >> folder/file1.txt
-          ls -ltr
-      - name: commands
-        uses: actions/upload-artifact@v4
-        with:
-            name: files
-            path: folder
-      - name: list the file
-        run: 
-              ls -ltr
+      - name: details
+        run: echo "[INFO] branch: ${{github.ref}}"
