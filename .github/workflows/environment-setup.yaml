@@ -41,4 +41,4 @@ jobs:
       steps:
       - name: details
         run: |
-            echo "[INFO] branch: ${{github.ref}}"
+            echo "[INFO] branch: ${{github.head_ref}}"
