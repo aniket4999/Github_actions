@@ -1,0 +1,38 @@
+name: Demo_variables
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+env:
+  App_name: demoapp
+  App_user: demouser
+  App_port: 44
+
+jobs:
+  job-1:
+      name: job-1
+      runs-on: ubuntu-latest
+      steps:
+      - name: create files/folder
+        run: |
+          mkdir -p folder
+          echo "hello aniket" >> folder/file1.txt
+          ls -ltr
+      - name: commands
+        uses: actions/upload-artifact@v4
+        with:
+            name: files
+      - name: list the file
+        run: 
+              ls -ltr
+      - name: use env variables
+        run: |
+            echo "application name is $App_name and the user is $App_user which is using port $App_port"
+            
