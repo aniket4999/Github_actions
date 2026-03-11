@@ -27,7 +27,9 @@ jobs:
       - name: context and built-in variables
         run: |
             echo "[INFO] repository name: ${{github.repository}}"
-        
+            echo "[INFO] committed by: ${{github.actor}}"
+            echo "[INFO] branch: ${{github.ref}}"
+            echo "[INFO] runners details: ${{runner.name}}"
   job-2:  
       name: job-2
       runs-on: ubuntu-latest
