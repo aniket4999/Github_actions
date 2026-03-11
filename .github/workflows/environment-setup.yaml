@@ -40,4 +40,5 @@ jobs:
       environment: Production
       steps:
       - name: details
-        run: echo "[INFO] branch: ${{github.ref}}"
+        run: |
+            echo "[INFO] branch: ${{github.ref}}"
