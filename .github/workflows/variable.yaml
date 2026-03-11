@@ -20,6 +20,15 @@ jobs:
       name: job-1
       runs-on: ubuntu-latest
       steps:
+      - name: Environment variables
+        run: echo "[INFO] appication name is $App_name user is $App_user and port is $App_port."
+      - name: secrets
+        run: echo "[INFO] app login pass is ${{secrets.App_password}}  
+        
+  job-2:  
+      name: job-2
+      runs-on: ubuntu-latest
+      steps:
       - name: create files/folder
         run: |
           mkdir -p folder
@@ -33,7 +42,3 @@ jobs:
       - name: list the file
         run: 
               ls -ltr
-      - name: use env variables
-        run: |
-            echo "application name is $App_name and the user is $App_user which is using port $App_port"
-            
