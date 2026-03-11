@@ -23,7 +23,7 @@ jobs:
       - name: Environment variables
         run: echo "[INFO] appication name is $App_name user is $App_user and port is $App_port."
       - name: secrets
-        run: echo "[INFO] app login pass is ${{secrets.App_password}}  
+        run: echo "[INFO] app login pass is ${{secrets.App_password}} "
         
   job-2:  
       name: job-2
