@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - dev
+      - main
   workflow_dispatch:
 
 jobs:
@@ -78,3 +79,5 @@ jobs:
       - name: list the file
         run: 
               ls -ltr
+      - name: exit in continue-on-error
+        run: exit 1
