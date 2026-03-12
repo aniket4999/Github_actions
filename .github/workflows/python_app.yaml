@@ -34,6 +34,32 @@ jobs:
         with:
           name: unit-test-report
           path: report/
-        
-
     
+ 
+  codeQL:
+    name: security
+    runs-on: ubuntu-latest
+
+    permissions: 
+      actions: read
+      contents: read
+      security-events: write  #required to upload the files
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'python' ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "security"
