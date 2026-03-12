@@ -23,8 +23,11 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests
         run: |
-          mkdir report
-          PYTHONPATH=. pytest -v --cov=. --cov-report=xml --cov-report=term-missing
+          mkdir -p report
+          PYTHONPATH=. pytest -v \
+          --cov=. --cov-report=xml \
+          --cov-report=term-missing \
+          --junitxml=report/test-results.xml
           ls -ltr
       - name: upload report
         uses: actions/upload-artifact@v7.0.0
