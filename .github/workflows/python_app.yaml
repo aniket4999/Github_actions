@@ -25,11 +25,12 @@ jobs:
         run: |
           mkdir report
           PYTHONPATH=. pytest -v --cov=. --cov-report=xml --cov-report=term-missing
+          ls -ltr
       - name: upload report
         uses: actions/upload-artifact@v7.0.0
         with:
           name: unit-test-report
-          path: report
+          path: report/
         
 
     
