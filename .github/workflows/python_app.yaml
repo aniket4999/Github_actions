@@ -27,7 +27,7 @@ jobs:
           PYTHONPATH=. pytest -v
           pytest --junitxml=reports/unit-test-results.xml --cov=. --cov-report=xml --cov-report=term-mssing -v
       - name: upload report
-        uses: actions/upload-artifact@5
+        uses: actions/upload-artifact@v7.0.0
         with:
           name: unit-test-report
           path: reports/
