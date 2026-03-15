@@ -1,0 +1,44 @@
+name: Environment-setup
+
+on: 
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+jobs:
+  Staging:
+      name: stage
+      runs-on: ubuntu-latest
+      environment:
+        name: Staging
+      if: github.head_ref == 'dev'
+      
+      steps:
+      - name: Environment variables
+        run: echo "[INFO] name is ${{vars.name}} host is ${{vars.host}}"
+      - name: Env secrets
+        run: echo "[INFO] app login pass is ${{vars.stagepass}} "   
+      - name: context and built-in variables
+        run: |
+            echo "[INFO] repository name: ${{github.repository}}"
+            echo "[INFO] committed by: ${{github.actor}}"
+            echo "[INFO] branch: ${{github.ref}}"
+            echo "[INFO] runners details: ${{runner.name}}"
+            echo "[INFO] event details: ${{github.event_name}}"
+            echo "[INFO] runners os: ${{runner.os}}"
+            echo "[INFO] job ID: ${{job.check_run_id}}"
+            
+  production:  
+      name: prod
+      runs-on: ubuntu-latest
+      environment: Production
+      steps:
+      - name: details
+        run: |
+            echo "[INFO] branch: ${{github.head_ref}}"

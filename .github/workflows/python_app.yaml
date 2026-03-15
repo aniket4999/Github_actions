@@ -1,0 +1,78 @@
+name: Python CI
+
+on:
+  push:
+    branches: python_project
+  pull_request:
+    branches: python_project
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6.0.2
+      - name: setup python
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          mkdir -p report
+          PYTHONPATH=. pytest -v \
+          --cov=. --cov-report=xml \
+          --cov-report=term-missing \
+          --junitxml=report/test-results.xml
+          ls -ltr
+      - name: upload report
+        uses: actions/upload-artifact@v7.0.0
+        with:
+          name: unit-test-report
+          path: report/
+    
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  codeQL:
+    name: security
+    runs-on: ubuntu-latest
+
+    permissions: 
+      actions: read
+      contents: read
+      security-events: write  #required to upload the files
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'python' ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "security"
+
+

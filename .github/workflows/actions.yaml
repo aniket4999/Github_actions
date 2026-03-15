@@ -1,12 +1,14 @@
 name: workflow for actions
 
 on: 
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - dev
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - dev
+#       - main
+#
   workflow_dispatch:
 
 jobs:
@@ -78,3 +80,5 @@ jobs:
       - name: list the file
         run: 
               ls -ltr
+      - name: exit in continue-on-error
+        run: exit 1
