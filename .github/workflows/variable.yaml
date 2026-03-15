@@ -1,14 +1,7 @@
 name: Demo_variables
 
 on: 
-  push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      - dev
-      - main
+
   workflow_dispatch:
 
 env:
