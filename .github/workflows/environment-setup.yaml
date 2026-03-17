@@ -1,6 +1,14 @@
 name: Environment-setup
 
 on: 
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - dev
+      - main
   workflow_dispatch:
 
 jobs:
