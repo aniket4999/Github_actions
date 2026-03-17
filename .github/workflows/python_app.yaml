@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p report
           PYTHONPATH=. pytest -v \
-          --cov=. --cov-report=xml \
+          --cov=. --cov-report=xml:report/coverage.xml \
           --cov-report=term-missing \
           --junitxml=report/test-results.xml
           ls -ltr
@@ -40,6 +40,7 @@ jobs:
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - uses: actions/checkout@v4
         with:
