@@ -103,5 +103,5 @@ jobs:
 
       - name: push docker image.
         run: |
-          docker tag my_app:${{ env.IMAGE_TAGS }} andydoc499/my_app:${{ env.IMAGE_TAGS }}
+          docker tag my_app:${{ env.IMAGE_TAGS }} andydoc49/my_app:${{ env.IMAGE_TAGS }}
           docker push andydoc499/my_app:${{ env.IMAGE_TAGS }}
