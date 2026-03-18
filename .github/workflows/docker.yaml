@@ -73,5 +73,30 @@ jobs:
           name: image-tag
           path: image-tag/
 
+  publish-dockerhub:
+    name: Publish to DockerHub
+    runs-on: ubuntu-latest
+    needs: [build]
 
-  
+    steps:
+
+      - name: download image tag
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: image-tag
+          path: .
+
+      - name: load docker image
+        run: |
+          docker load -i image-tag/image.tar
+
+      - name: login to dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUBUSER }}
+          password: ${{ secrets.DOCKERHUBPASS }}
+
+      - name: push docker image
+        run: |
+          docker tag my_app:${{ env.IMAGE_TAGS }} my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
+          docker push my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
