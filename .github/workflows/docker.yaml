@@ -96,7 +96,7 @@ jobs:
           username: ${{ secrets.DOCKERHUBUSER }}
           password: ${{ secrets.DOCKERHUBPASS }}
 
-      - name: push docker image
+      - name: push docker image.
         run: |
           docker tag my_app:${{ env.IMAGE_TAGS }} my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
           docker push my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
