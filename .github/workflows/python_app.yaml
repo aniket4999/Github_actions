@@ -113,16 +113,3 @@ jobs:
         run: |
           IMAGE_TAGS="${{ github.run_id }}-${{ github.sha }}"
           echo "IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
-      
-      - name: build docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false
-          load: true
-          tags: my_app:${{ env.IMAGE_TAGS }}
-      
-      - name: save image
-        run: |
-          mkdir -p image-tag
-          docker save my_app:${{ env.IMAGE_TAGS }} -o image-tag/image.tar
