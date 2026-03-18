@@ -55,7 +55,7 @@ jobs:
         id: vars
         run: |
           IMAGE_TAGS="${{ github.run_id }}-${{ github.sha }}"
-          echo "IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
+          echo "IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
 
       - name: build docker image 
         uses: docker/build-push-action@v5 
@@ -63,12 +63,12 @@ jobs:
           context: . 
           push: false 
           load: true 
-          tags: my_app:${{ env.IMAGE_TAGS }}
+          tags: my_app:${{ steps.vars.outputs.IMAGE_TAGS }}
           
       - name: save image
         run: |
           mkdir -p image-tag
-          docker save my_app:${{ env.IMAGE_TAGS }} -o image-tag/image.tar
+          docker save my_app:${{ steps.vars.outputs.IMAGE_TAGS }} -o image-tag/image.tar
 
       - name: upload image tag
         uses: actions/upload-artifact@v7.0.0
@@ -103,5 +103,5 @@ jobs:
 
       - name: push docker image.
         run: |
-          docker tag my_app:${{ env.IMAGE_TAGS }} my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
-          docker push my_dockerhub_username/my_app:${{ env.IMAGE_TAGS }}
+          docker tag my_app:${{ env.IMAGE_TAGS }} andydoc499/my_app:${{ env.IMAGE_TAGS }}
+          docker push andydoc499/my_app:${{ env.IMAGE_TAGS }}
