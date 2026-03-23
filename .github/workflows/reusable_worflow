@@ -1,0 +1,14 @@
+name: Reusable Workflow
+
+on: 
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  CI_workflow:
+    uses: aniket4999/Github_actions/.github/workflows/python_app.yaml
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      DOCKERHUBUSER: ${{ secrets.DOCKERHUBUSER }}
+      DOCKERHUBPASS: ${{ secrets.DOCKERHUBPASS }}
