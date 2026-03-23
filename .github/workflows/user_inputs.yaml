@@ -26,3 +26,5 @@ jobs:
         run: |
           echo "Name: ${{ github.event.inputs.name }}"
           echo "Environment: ${{ github.event.inputs.environment }}"
+        else:
+          echo "Inputs do not match the required conditions."
