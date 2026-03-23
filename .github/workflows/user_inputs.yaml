@@ -26,5 +26,7 @@ jobs:
         run: |
           echo "Name: ${{ github.event.inputs.name }}"
           echo "Environment: ${{ github.event.inputs.environment }}"
-        else:
-          echo "Inputs do not match the required conditions."
+
+      - name: failed job  
+        if: ${{ github.event.inputs.name != 'Aniket' && github.inputs.environment != 'staging' }}
+        run: echo "Inputs do not match the required conditions."
