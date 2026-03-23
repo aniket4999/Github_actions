@@ -1,0 +1,27 @@
+name: Manual Workflow with Inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your name"
+        required: true
+        default: "Aniket"
+      environment:
+        description: "Select environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print inputs
+        run: |
+          echo "Name: ${{ github.event.inputs.name }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
