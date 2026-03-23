@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Print inputs
-        if: ${{ github.input.name == "Aniket" && github.input.environment == "staging" }}
+        if: ${{ github.event.inputs.name == 'Aniket' && github.inputs.environment == 'staging' }}
         run: |
           echo "Name: ${{ github.event.inputs.name }}"
           echo "Environment: ${{ github.event.inputs.environment }}"
