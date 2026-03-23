@@ -64,7 +64,7 @@ jobs:
           push: false 
           load: true 
           tags: my_app:${{ steps.vars.outputs.IMAGE_TAGS }}
-          
+
       - name: save image
         run: |
           mkdir -p image-tag
