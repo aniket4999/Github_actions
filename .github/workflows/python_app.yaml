@@ -3,6 +3,16 @@ name: Python CI
 on:
     workflow_dispatch:
 
+    workflow_call:
+      secrets:
+        SONAR_TOKEN:
+          required: true
+        DOCKERHUBUSER:
+          required: true
+        DOCKERHUBPASS:
+          required: true
+
+
 jobs:
   test:
     runs-on: ubuntu-latest
