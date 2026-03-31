@@ -36,5 +36,7 @@ jobs:
       - name: Run Terraform Init
         run: terraform init
       - name: Run Terraform Plan
-        run: terraform plan
+        run: terraform plan -out=tfplan
+      - name: show output
+        run: terraform show -json tfplan | jq
     
